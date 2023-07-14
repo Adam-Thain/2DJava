@@ -48,6 +48,11 @@ public class KeyHandler implements KeyListener {
 		else if(gp.gameState == gp.characterState) {
 			characterState(code);
 		}
+
+		// OPTION STATE
+		else if(gp.gameState == gp.optionsState) {
+			optionState(code);
+		}
 	}
 	
 	public void titleState(int code) {
@@ -146,6 +151,10 @@ public class KeyHandler implements KeyListener {
 		if(code == KeyEvent.VK_F) {
 			shotKeyPressed = true;
 		}
+
+		if(code == KeyEvent.VK_ENTER){
+			gp.gameState = gp.optionsState;	
+		}
 		
 		// DEBUG
 		if(code == KeyEvent.VK_T) {
@@ -202,6 +211,17 @@ public class KeyHandler implements KeyListener {
 		
 		if(code == KeyEvent.VK_ENTER) {
 			gp.player.selectItem();
+		}
+	}
+
+	public void optionState(int code){
+
+		if(code == KeyEvent.VK_ESCAPE) {
+			gp.gameState = gp.playState;
+		}
+		
+		if(code == KeyEvent.VK_ENTER) {
+			enterPressed = true;
 		}
 	}
 

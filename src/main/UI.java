@@ -24,9 +24,10 @@ public class UI {
 	public boolean gameFinished = false; 
 	public String currentDialogue = "";
 	public int commandNum = 0;
-	public int titleScreenState = 0;
+	public int titleScreenState = 0; // 0: the first screen, 1: the second screen
 	public int slotCol;
 	public int slotRow;
+	int subState = 0;
 	
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -96,6 +97,11 @@ public class UI {
 		if(gp.gameState == gp.characterState) {
 			drawCharacterScreen();
 			drawInventory();
+		}
+
+		// OPTIONS STATE
+		if(gp.gameState == gp.optionsState){
+			drawOptionsScreen();
 		}
 	}
 	public void drawPlayerLife() {
@@ -301,7 +307,7 @@ public class UI {
 	}
 	public void drawCharacterScreen() {
 		
-		// CREATE A FRAME
+		// CREATE A CHARACTER STATS FRAME
 		final int frameX = gp.tileSize*2;
 		final int frameY = gp.tileSize;
 		final int frameWidth = gp.tileSize*5;
@@ -392,7 +398,7 @@ public class UI {
 	}
 	public void drawInventory() {
 		
-		// FRAME
+		// CREATE AN INVENTORY FRAME
 		final int frameX = gp.tileSize*12;
 		final int frameY = gp.tileSize;
 		final int frameWidth = gp.tileSize*6;
@@ -435,7 +441,7 @@ public class UI {
 		g2.setStroke(new BasicStroke(3));
 		g2.drawRoundRect(cursorX,cursorY,cursorWidth,cursorheight,10,10);
 		
-		// DESCRIPTION FRAME
+		// CREATE A DESCRIPTION FRAME
 		int dFrameX = frameX;
 		int dFrameY = frameY + frameHeight;
 		int dFrameWidth = frameWidth;
@@ -459,6 +465,62 @@ public class UI {
 	public int getItemIndexOnSlot() {
 		int itemIndex = slotCol + (slotRow*5);
 		return itemIndex;
+	}
+	public void drawOptionsScreen(){
+
+		g2.setColor(Color.RED);
+		g2.setFont(g2.getFont().deriveFont(32f));
+
+		// CREATE AN OPTIONS FRAME
+		int frameX = gp.tileSize*6;
+		int frameY = gp.tileSize;
+		int frameWidth = gp.tileSize*8;
+		int frameHeight = gp.tileSize*10;
+
+		drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+		switch(subState){
+			case 0: options_Top(frameX, frameY); break;
+			case 1: break;
+			case 2: break;
+		}
+	}
+	public void options_Top(int frameX, int frameY){
+
+		int textX;
+		int textY;
+
+		// TITLE
+		String text = "Options";
+		textX = getXForCentredText(text);
+		textY = frameY + gp.tileSize;
+		g2.drawString(text, textX, textY);
+
+		// FULL SCREEN ON/OFF
+		textX = frameX + gp.tileSize;
+		textY += gp.tileSize*2;
+		g2.drawString("Full Screen", textX, textY);
+		
+
+		// MUSIC
+		textY += gp.tileSize;
+		g2.drawString("Music", textX, textY);
+
+		// SE
+		textY += gp.tileSize;
+		g2.drawString("Sound Effects", textX, textY);
+
+		// CONTROL
+		textY += gp.tileSize;
+		g2.drawString("Control", textX, textY);
+
+		// END GAME
+		textY += gp.tileSize;
+		g2.drawString("End Game", textX, textY);
+
+		// BACK
+		textY += gp.tileSize*2;
+		g2.drawString("Back", textX, textY);
 	}
 	public void drawSubWindow(int x, int y, int width, int height) {
 		
