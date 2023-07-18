@@ -13,7 +13,7 @@ public class Main {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setTitle("2DJava");
-		window.setUndecorated(false);
+		// window.setUndecorated(false);
 		
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
