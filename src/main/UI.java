@@ -8,8 +8,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import org.w3c.dom.Text;
-
 import entity.Entity;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
