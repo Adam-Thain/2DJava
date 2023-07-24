@@ -168,6 +168,14 @@ public class KeyHandler implements KeyListener {
 				checkDrawTime = false;
 			}
 		}
+
+		if(code == KeyEvent.VK_R) {
+			switch(gp.currentMap){
+				case 0: gp.tileM.loadMap("/maps/worldV3.txt", 0); break;
+				case 1: gp.tileM.loadMap("/maps/interior01.txt", 1); break;
+			}
+				
+		}
 	}
 	public void pauseState(int code) {
 		if(code == KeyEvent.VK_P) {
@@ -292,8 +300,9 @@ public class KeyHandler implements KeyListener {
 
 		if(code == KeyEvent.VK_ENTER) {
 			if(gp.ui.commandNum == 0){
-				gp.gameState = gp.playState;
+				gp.gameState = gp.playState;				
 				gp.retry();
+				gp.playMusic(code);
 			}
 			else if(gp.ui.commandNum == 1){
 				gp.gameState = gp.titleState;
