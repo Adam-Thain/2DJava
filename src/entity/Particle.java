@@ -28,8 +28,7 @@ public class Particle extends Entity{
 		int offset = (gp.tileSize / 2) - (size/2);
 		worldX = generator.worldX + offset;
 		worldY = generator.worldY + offset;
-	}
-	
+	}	
 	public void update() {
 		
 		life--;
@@ -44,8 +43,7 @@ public class Particle extends Entity{
 		if(life == 0) {
 			alive = false;
 		}
-	}
-	
+	}	
 	public void draw(Graphics2D g2) {
 		
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
@@ -54,5 +52,4 @@ public class Particle extends Entity{
 		g2.setColor(color);
 		g2.fillRect(screenX, screenY, size, size);
 	}
-
 }

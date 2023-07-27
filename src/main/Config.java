@@ -12,7 +12,6 @@ public class Config {
     public Config(GamePanel gp){
         this.gp = gp;
     }
-
     public void saveConfig(){
 
         try {
@@ -42,7 +41,6 @@ public class Config {
             e.printStackTrace();
         }
     }
-
     public void loadConfig(){
         try{
             BufferedReader br = new BufferedReader(new FileReader("config.txt"));

@@ -14,6 +14,7 @@ import java.util.Comparator;
 
 import javax.swing.JPanel;
 
+import ai.Pathfinder;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -48,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 	int FPS = 60;
 	
 	// SYSTEM
-	TileManager tileM = new TileManager(this);
+	public TileManager tileM = new TileManager(this);
 	public KeyHandler keyH = new KeyHandler(this);
 	Sound music = new Sound();
 	Sound se = new Sound();
@@ -57,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public UI ui = new UI(this);
 	public EventHandler eHandler = new EventHandler(this);
 	Config config = new Config(this);
+	public Pathfinder pFinder = new Pathfinder(this);
 	Thread gameThread;
 	
 	// ENTITY AND OBJECT
@@ -88,8 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
-	}
-	
+	}	
 	public void setupGame() {
 		
 		aSetter.setObject();
@@ -104,15 +105,13 @@ public class GamePanel extends JPanel implements Runnable {
 		if(fullScreenOn == true){
 			setFullScreen();
 		}
-	}
-	
+	}	
 	public void retry(){
 		player.setDefaultPositions();
 		player.restoreLifeAndMana();
 		aSetter.setNPC();
 		aSetter.setMonster();
 	}
-
 	public void restart(){
 		player.setDefaultValues();
 		// player.setDefaultPositions();
@@ -123,7 +122,6 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setMonster();
 		aSetter.setInteractiveTile();
 	}
-
 	public void setFullScreen() {
 		
 		// GET LOCAL SCREEN DEVICE
@@ -134,13 +132,11 @@ public class GamePanel extends JPanel implements Runnable {
 		screenWidth2 = Main.window.getWidth();
 		screenHeight2 = Main.window.getHeight();
 	}
-	
 	public void startGameThread() {
 		
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-	
 	public void run() {
 		
 		double drawInterval = 1000000000/FPS;
@@ -176,7 +172,6 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	
 	}
-
 	public void update() {
 		
 		if(gameState == playState) {
@@ -235,7 +230,6 @@ public class GamePanel extends JPanel implements Runnable {
 			// Nothing
 		}
 	}	
-
 	public void drawToTempScreen () {
 
 		// DEBUG
@@ -335,9 +329,7 @@ public class GamePanel extends JPanel implements Runnable {
 			g2.drawString("Row: " + (player.worldY + player.solidArea.y)/tileSize, x, y); y += lineHeight;
 			g2.drawString("Draw Time: " + passed, x, y);
 		}
-	}
-	
-	
+	}	
 	public void drawToScreen() {
 		Graphics g = getGraphics();
 		g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);

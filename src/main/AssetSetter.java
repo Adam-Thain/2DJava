@@ -76,7 +76,6 @@ public class AssetSetter {
 		gp.npc[mapNum][i].worldY = gp.tileSize*7;
 		i++;
 	}
-	
 	public void setMonster() {
 		
 		int mapNum = 0;
@@ -107,8 +106,7 @@ public class AssetSetter {
 		// gp.monster[mapNum][i].worldX = gp.tileSize*38;
 		// gp.monster[mapNum][i].worldY = gp.tileSize*42;
 		// i++;
-	}
-	
+	}	
 	public void setInteractiveTile() {
 		
 		int mapNum = 0;

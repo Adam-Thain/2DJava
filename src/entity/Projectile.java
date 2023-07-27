@@ -9,7 +9,6 @@ public class Projectile extends Entity {
 	public Projectile(GamePanel gp) {
 		super(gp);
 	}
-	
 	public void set(int worldX, int worldY, String direction, boolean alive, Entity user) {
 		
 		this.worldX = worldX;
@@ -19,7 +18,6 @@ public class Projectile extends Entity {
 		this.user = user;
 		this.life = this.maxLife;
 	}
-	
 	public void update() {
 		
 		if(user == gp.player) {
@@ -61,13 +59,11 @@ public class Projectile extends Entity {
 			}
 			spriteCounter = 0;
 		}
-	}
-	
+	}	
 	public boolean haveResource(Entity user) {
 		boolean haveResource = false;
 		return haveResource;
-	}
-	
+	}	
 	public void subtractResource(Entity user) {
 		user.mana -= useCost;
 	}

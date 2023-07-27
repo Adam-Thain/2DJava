@@ -9,7 +9,6 @@ public class CollisionChecker {
 	public CollisionChecker(GamePanel gp) {
 		this.gp = gp;
 	}
-	
 	public void checkTile(Entity entity) {
 		
 		int entityLeftWorldX = entity.worldX + entity.solidArea.x;
@@ -55,7 +54,6 @@ public class CollisionChecker {
 			break;
 		}
 	}
-	
 	public int checkObject(Entity entity, boolean player) {
 		
 		int index = 999;
@@ -96,8 +94,7 @@ public class CollisionChecker {
 		}
 		
 		return index;
-	}
-	
+	}	
 	// NPC OR MONSTER
 	public int CheckEntity(Entity entity, Entity[][] target) { // FIXED
 		
@@ -138,7 +135,6 @@ public class CollisionChecker {
 		
 		return index;
 	}
-	
 	public boolean checkPlayer(Entity entity) {
 		
 		boolean contactPlayer = false;

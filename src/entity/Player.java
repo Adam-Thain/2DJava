@@ -6,7 +6,6 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.KeyHandler;
 import object.OBJ_Fireball;
@@ -252,7 +251,7 @@ public class Player extends Entity {
 		if(life <= 0){
 			gp.gameState = gp.gameOverState;
 			gp.ui.commandNum = -1;
-			gp.stopMusic();
+			// gp.stopMusic();
 			gp.playSE(12);
 		}
 	}
