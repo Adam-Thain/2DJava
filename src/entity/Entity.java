@@ -37,7 +37,8 @@ public class Entity {
 	public boolean dying = false;
 	boolean hpBarOn = false;
 	public boolean onPath = false;
-	
+	public boolean knockBack = false;
+
 	// COUNTER
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
@@ -45,9 +46,11 @@ public class Entity {
 	public int shotAvaliableCounter = 0;
 	int dyingCounter = 0;
 	int hpBarCounter = 0;
+	int knockBackCounter = 0;
 	
 	// CHARACTER ATTRIBUTES
 	public String name;
+	public int defaultSpeed;
 	public int speed;
 	public int maxLife;
 	public int life;
@@ -75,6 +78,7 @@ public class Entity {
 	public String description = "";
 	public int useCost;
 	public int price;
+	public int knockBackPower = 0;
 
 	// TYPE 
 	public int type;
@@ -179,19 +183,47 @@ public class Entity {
 	}
 	public void update() {
 		
-		setAction();
-		checkCollision();
+		if(knockBack == true){
 
-		// PLAYER CAN STILL MOVE IF COLLISION FAILS
-		if(collisionOn == false) {
-			switch(direction) {
-			case "up": worldY -= speed; break;
-			case "down": worldY += speed; break;
-			case "left": worldX -= speed; break;
-			case "right": worldX += speed; break;
+			checkCollision();
+
+			if(collisionOn == true){
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			}
+			else if(collisionOn == false){
+				switch(gp.player.direction){
+					case "up": worldY -= speed; break;
+					case "down": worldY += speed; break;
+					case "left": worldX -= speed; break;
+					case "right": worldX += speed; break;
+				}
+			}
+
+			knockBackCounter++;
+			if(knockBackCounter == 10){
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
 			}
 		}
-		
+		else{
+
+			setAction();
+			checkCollision();
+
+			// PLAYER CAN STILL MOVE IF COLLISION FAILS
+			if(collisionOn == false) {
+				switch(direction) {
+				case "up": worldY -= speed; break;
+				case "down": worldY += speed; break;
+				case "left": worldX -= speed; break;
+				case "right": worldX += speed; break;
+				}
+			}
+		}
+
 		spriteCounter++;
 		if(spriteCounter > 24) {
 			if(spriteNum == 1) {

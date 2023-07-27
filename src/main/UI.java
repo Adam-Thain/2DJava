@@ -924,7 +924,7 @@ public class UI {
 
 			int price = gp.player.inventory.get(itemIndex).price/2;
 			String text = "" + price;
-			x = getXForAlignToRightText(text, gp.tileSize*8-20);
+			x = getXForAlignToRightText(text, gp.tileSize*18-20);
 			g2.drawString(text, x, y+34);
 
 			// SELL AN ITEM
