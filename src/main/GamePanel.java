@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import ai.Pathfinder;
 import entity.Entity;
 import entity.Player;
+import environment.EnvironmentManager;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -59,6 +60,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public EventHandler eHandler = new EventHandler(this);
 	Config config = new Config(this);
 	public Pathfinder pFinder = new Pathfinder(this);
+	EnvironmentManager eManager = new EnvironmentManager(this);
+
 	Thread gameThread;
 	
 	// ENTITY AND OBJECT
@@ -98,6 +101,8 @@ public class GamePanel extends JPanel implements Runnable {
 		aSetter.setNPC();
 		aSetter.setMonster();
 		aSetter.setInteractiveTile();
+		eManager.setup();
+
 		gameState = titleState;
 		
 		tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
@@ -308,6 +313,9 @@ public class GamePanel extends JPanel implements Runnable {
 			
 			// FREE ENTITY LIST
 			entityList.clear();
+
+			// ENVIRONMENT
+			eManager.draw(g2);
 		
 			// UI
 			ui.draw(g2);
