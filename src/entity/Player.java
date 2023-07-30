@@ -6,6 +6,7 @@ import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
 import main.KeyHandler;
 import object.OBJ_Fireball;
@@ -109,6 +110,16 @@ public class Player extends Entity {
 		right1 = setup("/player/boyright1", gp.tileSize, gp.tileSize);
 		right2 = setup("/player/boyright2", gp.tileSize, gp.tileSize);
 	}
+	public void getSleepingImage(BufferedImage image){
+		up1 = image;
+		up2 = image;
+		down1 = image;
+		down2 = image;
+		left1 = image;
+		left2 = image;
+		right1 = image;
+		right2 = image;
+	}
 	public void getPlayerAttackImage() {
 		
 		if(currentWeapon.type == type_sword) {
@@ -131,7 +142,6 @@ public class Player extends Entity {
 			attackRight1 = setup("/player/boyaxeright1", gp.tileSize*2, gp.tileSize);
 			attackRight2 = setup("/player/boyaxeright2", gp.tileSize*2, gp.tileSize);
 		}
-		
 	}
 	public void update() {
 
