@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import main.KeyHandler;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
-import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -21,6 +20,7 @@ public class Player extends Entity {
 	public final int screenY;
 	int standCounter = 0;
 	public boolean attackCancelled = false;
+	public boolean lightUpdated = false;
 	
 	public Player(GamePanel gp,KeyHandler KeyH) {
 		
@@ -465,6 +465,16 @@ public class Player extends Entity {
 			if(selectedItem.type == type_shield) {
 				currentShield = selectedItem;
 				defence = getDefence();
+			}
+			if(selectedItem.type == type_light){
+
+				if(currentLight == selectedItem){
+					currentLight = null;
+				}
+				else{
+					currentLight = selectedItem;
+				}
+				lightUpdated = true;
 			}
 			if(selectedItem.type == type_consumable) {
 				
