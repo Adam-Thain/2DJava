@@ -305,7 +305,7 @@ public class Entity {
 
 		boolean targetInRange = false;
 		int xDis = getXDistance(gp.player);
-		int yDis = getXDistance(gp.player);
+		int yDis = getYDistance(gp.player);
 
 		switch(direction){
 			case "up": if(gp.player.worldY < worldY && yDis < straight && xDis < horizontal){
@@ -327,7 +327,7 @@ public class Entity {
 		}
 
 		if(targetInRange == true){
-			// CHECK IF IT INITIATES AN ATTAC
+			// CHECK IF IT INITIATES AN ATTACK
 			int i = new Random().nextInt(rate);
 			if(i == 0){
 				attacking = true;
@@ -488,20 +488,46 @@ public class Entity {
 
 			switch(direction) {
 			case "up":
-				if(spriteNum == 1) image = up1;
-				if(spriteNum == 2) image = up2;
+				if(attacking == false){
+					if(spriteNum == 1) image = up1;
+					if(spriteNum == 2) image = up2;
+				}	
+				if(attacking == true){
+					tempScreenY = screenY - gp.tileSize;
+					if(spriteNum == 1) image = attackUp1;
+					if(spriteNum == 2) image = attackUp2;
+				}			
 				break;
 			case "down":
-				if(spriteNum == 1) image = down1;
-				if(spriteNum == 2) image = down2;
+				if(attacking == false){
+					if(spriteNum == 1) image = down1;
+					if(spriteNum == 2) image = down2;
+				}	
+				if(attacking == true){
+					if(spriteNum == 1) image = attackDown1;
+					if(spriteNum == 2) image = attackDown2;
+				}			
 				break;
 			case "left":
-				if(spriteNum == 1) image = left1;
-				if(spriteNum == 2) image = left2;
+				if(attacking == false){
+					if(spriteNum == 1) image = left1;
+					if(spriteNum == 2) image = left2;
+				}
+				if(attacking == true){
+					tempScreenX = screenX - gp.tileSize;
+					if(spriteNum == 1) image = attackLeft1;
+					if(spriteNum == 2) image = attackLeft2;
+				}
 				break;
 			case "right":
-				if(spriteNum == 1) image = right1;
-				if(spriteNum == 2) image = right2;
+				if(attacking == false){
+					if(spriteNum == 1) image = right1;
+					if(spriteNum == 2) image = right2;
+				}
+				if(attacking == true){
+					if(spriteNum == 1) image = attackRight1;
+					if(spriteNum == 2) image = attackRight2;
+				}
 				break;
 			}
 			
@@ -520,7 +546,7 @@ public class Entity {
 				
 				if(hpBarCounter > 600) {
 					hpBarCounter = 0;
-					hpBarOn = true;
+					hpBarOn = false;
 				}
 			}
 			
