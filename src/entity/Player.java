@@ -434,16 +434,13 @@ public class Player extends Entity {
 				lightUpdated = true;
 			}
 			if(selectedItem.type == type_consumable) {
-				
-				if(selectedItem.use(this) == true){
 
-					if(selectedItem.use(this) == true){
-						if(selectedItem.amount > 1){
-							selectedItem.amount--;
-						}
-						else{
-							inventory.remove(itemIndex);
-						}
+				if(selectedItem.use(this) == true){
+					if(selectedItem.amount > 1){
+						selectedItem.amount--;
+					}
+					else{
+						inventory.remove(itemIndex);
 					}
 				}
 			}

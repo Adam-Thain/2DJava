@@ -26,14 +26,14 @@ public class OBJ_Fireball extends Projectile {
 	}
 	
 	public void getImage() {
-		up1 = setup("/projectile/fireballup1", gp.tileSize, gp.tileSize*2);
-		up2 = setup("/projectile/fireballup2", gp.tileSize, gp.tileSize*2);
-		down1 = setup("/projectile/fireballdown1", gp.tileSize, gp.tileSize*2);
-		down2 = setup("/projectile/fireballdown2", gp.tileSize, gp.tileSize*2);
-		left1 = setup("/projectile/fireballleft1", gp.tileSize*2, gp.tileSize);
-		left2 = setup("/projectile/fireballleft2", gp.tileSize*2, gp.tileSize);
-		right1 = setup("/projectile/fireballright1", gp.tileSize*2, gp.tileSize);
-		right2 = setup("/projectile/fireballright2", gp.tileSize*2, gp.tileSize);
+		up1 = setup("/projectile/fireballup1", gp.tileSize, gp.tileSize);
+		up2 = setup("/projectile/fireballup2", gp.tileSize, gp.tileSize);
+		down1 = setup("/projectile/fireballdown1", gp.tileSize, gp.tileSize);
+		down2 = setup("/projectile/fireballdown2", gp.tileSize, gp.tileSize);
+		left1 = setup("/projectile/fireballleft1", gp.tileSize, gp.tileSize);
+		left2 = setup("/projectile/fireballleft2", gp.tileSize, gp.tileSize);
+		right1 = setup("/projectile/fireballright1", gp.tileSize, gp.tileSize);
+		right2 = setup("/projectile/fireballright2", gp.tileSize, gp.tileSize);
 	}
 	
 	public boolean haveResource(Entity user) {

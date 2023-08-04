@@ -341,6 +341,7 @@ public class Entity {
 
 		int i = new Random().nextInt(rate);
 		if(i == 0 && projectile.alive == false && shotAvaliableCounter == shotInterval) {
+			
 			projectile.set(worldX, worldY, direction, true, this);
 
 			// CHECK VACANCY
