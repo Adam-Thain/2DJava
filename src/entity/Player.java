@@ -3,6 +3,8 @@ package entity;
 import main.GamePanel;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -307,8 +309,7 @@ public class Player extends Entity {
 	}
 	public void interactNPC(int i) {
 		
-		if(gp.keyH.enterPressed == true) {
-			
+		if(gp.keyH.enterPressed == true) {		
 			if(i != 999) {	
 				attackCancelled = true;
 				gp.gameState = gp.dialogState;
@@ -319,15 +320,13 @@ public class Player extends Entity {
 	public void contactMonster(int i) {
 		
 		if(i != 999) {
-			if(invincible == false && gp.monster[gp.currentMap][i].dying == false) { // FIXED
-				
+			if(invincible == false && gp.monster[gp.currentMap][i].dying == false) { // FIXED				
 				gp.playSE(6);
 				
-				int damage = gp.monster[gp.currentMap][i].attack = defence; // FIXED
+				int damage = gp.monster[gp.currentMap][i].attack - defence; // FIXED
 				if(damage < 0) {
 					damage = 0;
 				}
-				
 				life -= damage;
 				invincible = true;
 			}
@@ -343,8 +342,7 @@ public class Player extends Entity {
 				if(knockBackPower > 0){
 					setknockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
 				}
-				
-				
+					
 				int damage = attack - gp.monster[gp.currentMap][i].defence; // FIXED
 				if(damage < 0) {
 					damage = 0;
@@ -541,9 +539,8 @@ public class Player extends Entity {
 		if(invincible == true) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
 		}
-		
-		g2.drawImage(image, tempScreenX, tempScreenY, null);	
-		
+
+		g2.drawImage(image, tempScreenX, tempScreenY, null);			
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 	}
 }
