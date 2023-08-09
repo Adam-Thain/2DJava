@@ -7,7 +7,6 @@ import main.GamePanel;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
-import object.OBJ_Rock;
 
 public class MON_Orc extends Entity {
     
@@ -26,7 +25,8 @@ public class MON_Orc extends Entity {
 		life = maxLife;
 		attack = 8;
 		defence = 2;
-		exp = 2;
+		exp = 10;
+		knockBackPower = 5;
 		
 		solidArea.x = 4;
 		solidArea.y = 4;
