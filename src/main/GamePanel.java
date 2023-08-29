@@ -84,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public final int titleState = 0;
 	public final int playState = 1;
 	public final int pauseState = 2;
-	public final int dialogState = 3;
+	public final int dialogueState = 3;
 	public final int characterState = 4;
 	public final int optionsState = 5;
 	public final int gameOverState= 6;
@@ -121,6 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public void resetGame(boolean restart){
 		player.setDefaultPositions();
 		player.restoreStatus();
+		player.resetCounter();
 		aSetter.setNPC();
 		aSetter.setMonster();
 
