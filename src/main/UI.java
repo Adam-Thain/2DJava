@@ -843,6 +843,7 @@ public class UI {
 			gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
 			gp.eHandler.previousEventX = gp.player.worldX;
 			gp.eHandler.previousEventY = gp.player.worldY;
+			gp.changeArea();
 		}
 	}
 	public void drawTradeScreen(){
@@ -890,7 +891,7 @@ public class UI {
 			g2.drawString(">", x-24, y);
 			if(gp.keyH.enterPressed == true){
 				commandNum = 0;
-				npc.startDialogue(npc,0);
+				npc.startDialogue(npc,1);
 			}
 		}
 	}
