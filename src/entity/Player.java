@@ -176,6 +176,16 @@ public class Player extends Entity {
 			attackRight1 = setup("/player/boyaxeright1", gp.tileSize*2, gp.tileSize);
 			attackRight2 = setup("/player/boyaxeright2", gp.tileSize*2, gp.tileSize);
 		}
+		if(currentWeapon.type == type_pickaxe) {
+			attackUp1 = setup("/player/boypickup1", gp.tileSize, gp.tileSize*2);
+			attackUp2 = setup("/player/boypickup2", gp.tileSize, gp.tileSize*2);
+			attackDown1 = setup("/player/boypickdown1", gp.tileSize, gp.tileSize*2);
+			attackDown2 = setup("/player/boypickdown2", gp.tileSize, gp.tileSize*2);
+			attackLeft1 = setup("/player/boypickleft1", gp.tileSize*2, gp.tileSize);
+			attackLeft2 = setup("/player/boypickleft2", gp.tileSize*2, gp.tileSize);
+			attackRight1 = setup("/player/boypickright1", gp.tileSize*2, gp.tileSize);
+			attackRight2 = setup("/player/boypickright2", gp.tileSize*2, gp.tileSize);
+		}
 	}
 	public void getGuardImage(){
 		guardUp = setup("/player/boyguardup", gp.tileSize, gp.tileSize);
@@ -384,6 +394,8 @@ public class Player extends Entity {
 				attackCancelled = true;
 				gp.npc[gp.currentMap][i].speak(); // FIXED
 			}
+
+			gp.npc[gp.currentMap][i].move(direction);
 		}
 	}
 	public void contactMonster(int i) {
@@ -450,6 +462,7 @@ public class Player extends Entity {
 			generateParticle(gp.iTile[gp.currentMap][i],gp.iTile[gp.currentMap][i]); // FIXED
 			
 			if(gp.iTile[gp.currentMap][i].life == 0) { // FIXED
+				gp.iTile[gp.currentMap][i].checkDrop();
 				gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm(); // FIXED
 			}
 		}
@@ -487,7 +500,7 @@ public class Player extends Entity {
 			
 			Entity selectedItem = inventory.get(itemIndex);
 			
-			if(selectedItem.type == type_sword || selectedItem.type == type_axe) {
+			if(selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe) {
 				currentWeapon = selectedItem;
 				attack = getAttack();
 				getAttackImage();

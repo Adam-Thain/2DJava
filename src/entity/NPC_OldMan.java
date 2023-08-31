@@ -88,6 +88,7 @@ public class NPC_OldMan extends Entity{
 	}
 	public void speak() {
 
+
 		// DO CHARACTER SPECIFIC STUFF HERE
 		facePlayer();
 		startDialogue(this, dialogueSet);
