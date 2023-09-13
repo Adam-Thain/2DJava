@@ -1,7 +1,14 @@
 package monster;
 
+import java.util.Random;
+
+import data.Progress;
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Coin_Bronze;
+import object.OBJ_Door_Iron;
+import object.OBJ_Heart;
+import object.OBJ_ManaCrystal;
 
 public class MON_SkeletonLord extends Entity{
     
@@ -24,6 +31,7 @@ public class MON_SkeletonLord extends Entity{
 		defence = 2;
 		exp = 50;
 		knockBackPower = 5;
+        sleep = true;
 		
         int size = gp.tileSize*5; 
 		solidArea.x = 48;
@@ -39,6 +47,7 @@ public class MON_SkeletonLord extends Entity{
 		
 		getImage();
         getAttackImage();
+        setDialogue();
 	}
 	public void getImage() {
 		
@@ -90,6 +99,11 @@ public class MON_SkeletonLord extends Entity{
             attackRight2 = setup("/monster/skeletonlordphase2attackright2", gp.tileSize*i*2, gp.tileSize*i);
         }
 	}
+    public void setDialogue(){
+        dialogues[0][0] = "No one can steal my treasure!";
+        dialogues[0][1] = "You will die here!";
+        dialogues[0][2] = "WELCOME TO YOUR DOOM!";
+    }
 	public void setAction() {
 
         if(inRage == false && life < maxLife/2){
@@ -120,5 +134,34 @@ public class MON_SkeletonLord extends Entity{
 		// direction = gp.player.direction;
 		onPath = true;
 	}
-	public void checkDrop() {}
+	public void checkDrop() {
+
+        gp.bossBattleOn = false;
+        Progress.skeletonLordDefeated = true;
+
+        // restore previous music
+        gp.stopMusic();
+        gp.playMusic(19);
+
+        for(int i = 0; i < gp.obj[i].length; i++){
+            if(gp.obj[gp.currentMap][i] != null && gp.obj[gp.currentMap][i].name.equals(OBJ_Door_Iron.objName)){
+                gp.playSE(21);
+                gp.obj[gp.currentMap][i] = null;
+            };
+        }
+
+        // CAST A DIE
+        int i = new Random().nextInt(100)+1;
+
+        // SET THE MONSTER DROP
+        if(i < 50){
+            dropItem(new OBJ_Coin_Bronze(gp));
+        }
+        if(i >= 50 && i < 75){
+            dropItem(new OBJ_Heart(gp));
+        }
+        if(i >= 75 && i < 100){
+            dropItem(new OBJ_ManaCrystal(gp));
+        }
+    }
 }
